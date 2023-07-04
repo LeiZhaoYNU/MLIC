@@ -2,9 +2,9 @@
 datapath=data/coco
 modelpath=mcar-work-dirs
 
-# setting, 下面-bs可以自己调整
+# setting
 dataset='coco2014'            # 'voc2007', 'voc2012', 'coco2014'
-imgsize=256                  #  256, 448，若要修改陈256，该语句需要这样修改：self.pooling = nn.MaxPool2d(8, 8) 
+imgsize=256                  #  256, 448    change  self.pooling = nn.MaxPool2d(8, 8)  if choose 256
 basemodel='resnet101'      # 'mobilenetv2', 'resnet50', 'resnet101'
 poolingstyle='avg'           # 'avg', 'gwp'
 topN=4
@@ -23,7 +23,6 @@ echo $savefold
 # training
 if [ $TrainPhase == True ];then
 echo 'begining train....'
-## 多卡的话可以=0，1，2，3....
 CUDA_VISIBLE_DEVICES=0  python -u ./src/main.py \
   --data-path $datapath  \
   --dataset-name $dataset \
